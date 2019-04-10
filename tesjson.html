@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jQuery.js"></script>
+
+</head>
+<body>
+
+
+	<form>
+	
+	<input type ="button" onclick="getData()" value="OK"/>
+	</form>
+	
+	<br>
+
+<table id="tablebaru"  border="1">
+<tr>
+
+
+<th>Tanggal</th>
+<th>Shubuh </th>
+<th>Terbit </th>
+<th>Dhuha </th>
+<th>Zhuhur </th>
+<th>Ashr</th>
+<th>Maghrib</th>
+<th>Isya</th>
+
+
+</tr>
+
+</table>
+
+
+<script>
+
+		
+function getData(){
+	$(document).ready(function(){
+		$.getJSON("convertcsv.json",function(data){
+				var tampil = '';
+				$.each(data.jadwalsholat,function(index , value){
+						tampil += '<tr>';
+						
+						tampil += '<td>' +value.Tanggal + '</td>';
+						tampil += '<td>' +value.Shubuh + '</td>';
+						tampil += '<td>' +value.Terbit+ '</td>';
+						tampil += '<td>' +value.Dhuha + '</td>';
+						tampil += '<td>' +value.Zhuhur + '</td>';
+						tampil += '<td>' +value.Ashr+ '</td>';
+						tampil += '<td>' +value.Maghrib + '</td>';
+						tampil += '<td>' +value.Isya + '</td>';
+						tampil += '</tr>';
+				});
+				$('#tablebaru').append(tampil);
+		});
+	});
+}	
+</script>
+
+<div></div>
+
+</body>
+</html>
